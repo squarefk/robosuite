@@ -324,4 +324,4 @@ class IKSolver:
 
         self.debug_iter += 1
 
-        return self.q_des
+        return self.q_des, self.dof_ids

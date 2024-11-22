@@ -394,7 +394,7 @@ class IKSolverMink:
             if self.i % 50:
                 print(f"Task errors: {task_translation_errors}")
 
-        return self.configuration.data.qpos[self.robot_model_dof_ids]
+        return self.configuration.data.qpos[self.robot_model_dof_ids], self.full_model_dof_ids
 
     def _get_task_translation_errors(self) -> List[float]:
         errors = []

@@ -253,6 +253,10 @@ class Robot(object):
                 raise ValueError("Error: Invalid noise type specified. Options are 'gaussian' or 'uniform'.")
             init_qpos += noise
 
+        low_qpos = self.sim.model.jnt_range[self._ref_joint_pos_indexes, 0]
+        high_qpos = self.sim.model.jnt_range[self._ref_joint_pos_indexes, 1]
+        init_qpos = np.clip(init_qpos, low_qpos, high_qpos)
+
         # Set initial position in sim
         self.sim.data.qpos[self._ref_joint_pos_indexes] = init_qpos
 

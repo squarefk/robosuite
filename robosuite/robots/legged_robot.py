@@ -3,6 +3,7 @@ import os
 import time
 from collections import OrderedDict
 from typing import Dict, List
+import mujoco
 
 import numpy as np
 
@@ -184,6 +185,17 @@ class LeggedRobot(MobileRobot):
 
         applied_action_dict = self.composite_controller.run_controller(self._enabled_parts)
         for part_name, applied_action in applied_action_dict.items():
+            joint_id2action = {}
+            for i, joint_id in enumerate(self._ref_joints_indexes_dict[part_name]):
+                joint_id2action[joint_id] = applied_action[i]
+            for actuator_id in self._ref_actuators_indexes_dict[part_name]:
+                joint_id = self.sim.model.actuator_trnid[actuator_id][0]
+                action = joint_id2action[joint_id] / self.sim.model.actuator_gear[actuator_id][0]
+                low = self.sim.model.actuator_ctrlrange[actuator_id, 0]
+                high = self.sim.model.actuator_ctrlrange[actuator_id, 1]
+                self.sim.data.ctrl[actuator_id] = np.clip(action, low, high)
+            continue
+
             applied_action_low = self.sim.model.actuator_ctrlrange[self._ref_actuators_indexes_dict[part_name], 0]
             applied_action_high = self.sim.model.actuator_ctrlrange[self._ref_actuators_indexes_dict[part_name], 1]
             applied_action = np.clip(applied_action, applied_action_low, applied_action_high)

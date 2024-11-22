@@ -189,6 +189,7 @@ class RobotModel(MujocoXMLModel, metaclass=RobotModelMeta):
         # so that when the mount moves the robot moves along with it
         merge_body = self.root_body
         root = find_elements(root=self.worldbody, tags="body", attribs={"name": merge_body}, return_first=True)
+        assert "base" in root.get("name")
         for body in mobile_base.worldbody:
             root.append(body)
         arm_root = find_elements(root=self.worldbody, tags="body", return_first=False)[1]

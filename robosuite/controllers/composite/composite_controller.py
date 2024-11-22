@@ -306,7 +306,7 @@ class WholeBody(CompositeController):
             previous_idx = last_idx
 
     def set_goal(self, all_action):
-        target_qpos = self.joint_action_policy.solve(all_action[: self.joint_action_policy.control_dim])
+        target_qpos, target_dofs = self.joint_action_policy.solve(all_action[: self.joint_action_policy.control_dim])
         # create new all_action vector with the IK solver's actions first
         all_action = np.concatenate([target_qpos, all_action[self.joint_action_policy.control_dim :]])
         for part_name, controller in self.part_controllers.items():
@@ -314,6 +314,9 @@ class WholeBody(CompositeController):
             action = all_action[start_idx:end_idx]
             if part_name in self.grippers.keys():
                 action = self.grippers[part_name].format_action(action)
+            if end_idx <= len(target_qpos):
+                for i in range(end_idx - start_idx):
+                    assert controller.qvel_index[i] == target_dofs[start_idx + i]
             controller.set_goal(action)
 
     def update_state(self):
