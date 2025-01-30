@@ -900,6 +900,9 @@ class Robot(object):
                 self.part_controller_config[gripper_name]["use_action_scaling"] = self.part_controller_config[arm][
                     "gripper"
                 ].get("use_action_scaling", True)
+                self.part_controller_config[gripper_name]["control_mode"] = self.part_controller_config[arm][
+                    "gripper"
+                ].get("control_mode", None)
                 self.part_controller_config[gripper_name]["robot_name"] = self.name
                 self.part_controller_config[gripper_name]["sim"] = self.sim
                 self.part_controller_config[gripper_name]["eef_name"] = self.gripper[arm].important_sites["grip_site"]

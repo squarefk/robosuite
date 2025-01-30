@@ -163,6 +163,8 @@ def gripper_controller_factory(name, params):
     interpolator = None
     if name == "GRIP":
         return gripper_controllers.SimpleGripController(interpolator=interpolator, **params)
+    elif name == "GENERAL_GRIP":
+        return gripper_controllers.GeneralGripController(interpolator=interpolator, **params)
     elif name == "JOINT_POSITION":
         return generic.JointPositionController(interpolator=interpolator, **params)
     raise ValueError("Unknown controller name: {}".format(name))

@@ -99,7 +99,15 @@ class CompositeController:
             start_idx, end_idx = self._action_split_indexes[part_name]
             action = all_action[start_idx:end_idx]
             if part_name in self.grippers.keys():
-                action = self.grippers[part_name].format_action(action)
+                if hasattr(self.grippers[part_name], 'format_action_with_curr_qpos'):
+                    if controller.goal_qpos is None:
+                        curr_qpos = np.array(self.sim.data.qpos[controller.qpos_index])
+                    else:
+                        curr_qpos = controller.goal_qpos
+                    action = self.grippers[part_name].format_action_with_curr_qpos(action, curr_qpos)
+                else:
+                    action = self.grippers[part_name].format_action(action)
+
             controller.set_goal(action)
 
     def reset(self):
@@ -171,7 +179,14 @@ class HybridMobileBase(CompositeController):
             start_idx, end_idx = self._action_split_indexes[part_name]
             action = all_action[start_idx:end_idx]
             if part_name in self.grippers.keys():
-                action = self.grippers[part_name].format_action(action)
+                if hasattr(self.grippers[part_name], 'format_action_with_curr_qpos'):
+                    if controller.goal_qpos is None:
+                        curr_qpos = np.array(self.sim.data.qpos[controller.qpos_index])
+                    else:
+                        curr_qpos = controller.goal_qpos
+                    action = self.grippers[part_name].format_action_with_curr_qpos(action, curr_qpos)
+                else:
+                    action = self.grippers[part_name].format_action(action)
 
             if part_name in self.arms and hasattr(controller, "set_goal_update_mode"):
                 """
@@ -313,7 +328,15 @@ class WholeBody(CompositeController):
             start_idx, end_idx = self._action_split_indexes[part_name]
             action = all_action[start_idx:end_idx]
             if part_name in self.grippers.keys():
-                action = self.grippers[part_name].format_action(action)
+                if hasattr(self.grippers[part_name], 'format_action_with_curr_qpos'):
+                    if controller.goal_qpos is None:
+                        import ipdb; ipdb.set_trace()
+                        curr_qpos = np.array(self.sim.data.qpos[controller.qpos_index])
+                    else:
+                        curr_qpos = controller.goal_qpos
+                    action = self.grippers[part_name].format_action_with_curr_qpos(action, curr_qpos)
+                else:
+                    action = self.grippers[part_name].format_action(action)
             controller.set_goal(action)
 
     def update_state(self):

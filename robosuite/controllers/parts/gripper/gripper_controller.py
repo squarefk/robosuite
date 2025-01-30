@@ -132,6 +132,12 @@ class GripperController(object, metaclass=abc.ABCMeta):
 
             self.joint_pos = np.array(self.sim.data.qpos[self.qpos_index])
             self.joint_vel = np.array(self.sim.data.qvel[self.qvel_index])
+
+            mass_matrix = np.ndarray(shape=(self.sim.model.nv, self.sim.model.nv), dtype=np.float64, order="C")
+            mujoco.mj_fullM(self.sim.model._model, mass_matrix, self.sim.data.qM)
+            mass_matrix = np.reshape(mass_matrix, (len(self.sim.data.qvel), len(self.sim.data.qvel)))
+            self.mass_matrix = mass_matrix[self.qvel_index, :][:, self.qvel_index]
+
             # Clear self.new_update
             self.new_update = False
 

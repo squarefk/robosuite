@@ -1,1 +1,2 @@
 from .simple_grip import SimpleGripController
+from .general_grip import GeneralGripController
