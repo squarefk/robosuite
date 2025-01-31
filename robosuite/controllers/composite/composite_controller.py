@@ -330,7 +330,6 @@ class WholeBody(CompositeController):
             if part_name in self.grippers.keys():
                 if hasattr(self.grippers[part_name], 'format_action_with_curr_qpos'):
                     if controller.goal_qpos is None:
-                        import ipdb; ipdb.set_trace()
                         curr_qpos = np.array(self.sim.data.qpos[controller.qpos_index])
                     else:
                         curr_qpos = controller.goal_qpos
