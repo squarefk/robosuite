@@ -52,6 +52,9 @@ class JointPositionController(Controller):
             determining desired torques based upon the joint pos errors. Can be either be a scalar (same value for all
             action dims), or a list (specific values for each dim)
 
+        ki (float or Iterable of float): integral gain for determining desired torques based upon the joint pos error.
+            Can be either be a scalar (same value for all action dims), or a list (specific values for each dim)
+
         impedance_mode (str): Impedance mode with which to run this controller. Options are {"fixed", "variable",
             "variable_kp"}. If "fixed", the controller will have fixed kp and damping_ratio values as specified by the
             @kp and @damping_ratio arguments. If "variable", both kp and damping_ratio will now be part of the
@@ -97,6 +100,7 @@ class JointPositionController(Controller):
         output_min=-0.05,
         kp=50,
         damping_ratio=1,
+        ki=1.0,
         impedance_mode="fixed",
         kp_limits=(0, 300),
         damping_ratio_limits=(0, 100),
@@ -132,13 +136,14 @@ class JointPositionController(Controller):
         # limits
         self.position_limits = np.array(qpos_limits) if qpos_limits is not None else qpos_limits
 
-        # kp kd
+        # kp kd ki
         self.kp = self.nums2array(kp, self.control_dim)
         self.kd = (
             2 * np.sqrt(self.kp) * damping_ratio
             if kwargs.get("kd", None) is None
             else self.nums2array(kwargs.get("kd", None), self.control_dim)
         )
+        self.ki = self.nums2array(ki, self.control_dim)
 
         # kp and kd limits
         self.kp_min = self.nums2array(kp_limits[0], self.control_dim)
@@ -174,6 +179,11 @@ class JointPositionController(Controller):
 
         # initialize
         self.goal_qpos = None
+
+        # Add integral term initialization
+        self.integral_error = np.zeros(self.control_dim)
+        self.prev_position_error = np.zeros(self.control_dim)
+        self.dt = 1.0 / policy_freq
 
     def set_goal(self, action, set_qpos=None):
         """
@@ -255,9 +265,20 @@ class JointPositionController(Controller):
         else:
             desired_qpos = np.array(self.goal_qpos)
 
+        # Update integral error with anti-windup
         position_error = desired_qpos - self.joint_pos
+        self.integral_error += position_error * self.dt
+        
+        # Anti-windup: Limit integral term
+        integral_limit = 1.0  # Adjust this value based on your needs
+        self.integral_error = np.clip(self.integral_error, -integral_limit, integral_limit)
+        
         vel_pos_error = -self.joint_vel
-        desired_torque = np.multiply(np.array(position_error), np.array(self.kp)) + np.multiply(vel_pos_error, self.kd)
+        
+        # PID control with all three terms
+        desired_torque = (np.multiply(position_error, self.kp) + 
+                         np.multiply(vel_pos_error, self.kd) + 
+                         np.multiply(self.integral_error, self.ki))
 
         # Return desired torques plus gravity compensations
         self.torques = np.dot(self.mass_matrix, desired_torque) + self.torque_compensation
