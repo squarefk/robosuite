@@ -1,6 +1,7 @@
 """This is a controller that controls the fingers / grippers to do naive gripping. No matter how many fingers the gripper has, they all move in the same direction."""
 
 import numpy as np
+import traceback
 
 from robosuite.controllers.parts.gripper.gripper_controller import GripperController
 from robosuite.utils.control_utils import *
@@ -76,7 +77,8 @@ class GeneralGripController(GripperController):
         interpolator=None,
         use_action_scaling=True,
         control_mode="torque",
-        kp=100,
+        kp=200,
+        ki=0.1,
         kd=10,
         **kwargs,  # does nothing; used so no error raised when dict is passed with extra terms used previously
     ):
@@ -110,7 +112,7 @@ class GeneralGripController(GripperController):
         self.use_action_scaling = use_action_scaling
 
         # initialize
-        self.goal_qpos = None
+        self._goal_qpos = None
         self.qpos = None
         self.vels = None
         self.torques = None
@@ -118,7 +120,23 @@ class GeneralGripController(GripperController):
         self.control_mode = control_mode
 
         self.kp = kp
+        self.ki = ki
         self.kd = kd
+
+        # Initialize integral error
+        self.integral_error = np.zeros(self.control_dim)
+        self.dt = 1.0 / policy_freq
+
+    @property
+    def goal_qpos(self):
+        return self._goal_qpos
+        
+    @goal_qpos.setter
+    def goal_qpos(self, value):
+        # print("\n[DEBUG] Gripper goal_qpos being set to:", value)
+        # print("Stack trace:")
+        # traceback.print_stack()
+        self._goal_qpos = value
 
     def set_goal(self, action, set_qpos=None):
         """
@@ -156,9 +174,13 @@ class GeneralGripController(GripperController):
         #     scaled_delta = self.scale_action(action)
 
         self.goal_qpos = action
-        
+
         if self.interpolator is not None:
             self.interpolator.set_goal(self.goal_qpos)
+
+        # if 11 in self.qpos_index:
+        #     print(action)
+        #     print(self.goal_qpos)
 
     def run_controller(self):
         """
@@ -187,14 +209,23 @@ class GeneralGripController(GripperController):
         else:
             desired_qpos = np.array(self.goal_qpos)
 
+        # Calculate errors
         position_error = desired_qpos - self.joint_pos
-        vel_pos_error = -self.joint_vel
+        velocity_error = -self.joint_vel
 
-        # import ipdb; ipdb.set_trace(context=10)
+        # Update integral error
+        self.integral_error += position_error * self.dt
+
         if self.control_mode == "torque":
-            desired_torque = np.multiply(np.array(position_error), np.array(self.kp)) + np.multiply(vel_pos_error, self.kd)
+            # PID control
+            p_term = np.multiply(position_error, self.kp)
+            i_term = np.multiply(self.integral_error, self.ki)
+            d_term = np.multiply(velocity_error, self.kd)
+            
+            desired_torque = p_term + i_term + d_term
             self.torques = np.dot(self.mass_matrix, desired_torque) + self.torque_compensation
         elif self.control_mode == "velocity":
+            # TODO: under testing
             desired_qvel = self.kp * position_error
             self.vels = desired_qvel
             if self.use_action_scaling:
@@ -203,6 +234,7 @@ class GeneralGripController(GripperController):
                 weight = 0.5 * (ctrl_range[:, 1] - ctrl_range[:, 0])
                 self.vels = bias + weight * desired_qvel
         elif self.control_mode == "position":
+            # TODO: under testing
             desired_qpos = np.array(self.goal_qpos)
             self.qpos = desired_qpos
         else:
@@ -222,6 +254,9 @@ class GeneralGripController(GripperController):
         Resets joint position goal to be current position
         """
         self.goal_qpos = self.joint_pos
+
+        # Reset integral error
+        self.integral_error = np.zeros(self.control_dim)
 
         # Reset interpolator if required
         if self.interpolator is not None:
