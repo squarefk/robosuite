@@ -268,17 +268,19 @@ class JointPositionController(Controller):
         # Update integral error with anti-windup
         position_error = desired_qpos - self.joint_pos
         self.integral_error += position_error * self.dt
-        
+
         # Anti-windup: Limit integral term
         integral_limit = 1.0  # Adjust this value based on your needs
         self.integral_error = np.clip(self.integral_error, -integral_limit, integral_limit)
-        
+
         vel_pos_error = -self.joint_vel
-        
+
         # PID control with all three terms
-        desired_torque = (np.multiply(position_error, self.kp) + 
-                         np.multiply(vel_pos_error, self.kd) + 
-                         np.multiply(self.integral_error, self.ki))
+        desired_torque = (
+            np.multiply(position_error, self.kp)
+            + np.multiply(vel_pos_error, self.kd)
+            + np.multiply(self.integral_error, self.ki)
+        )
 
         # Return desired torques plus gravity compensations
         self.torques = np.dot(self.mass_matrix, desired_torque) + self.torque_compensation

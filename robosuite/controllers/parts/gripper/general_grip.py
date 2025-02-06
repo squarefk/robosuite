@@ -1,7 +1,8 @@
 """This is a controller that controls the fingers / grippers to do naive gripping. No matter how many fingers the gripper has, they all move in the same direction."""
 
-import numpy as np
 import traceback
+
+import numpy as np
 
 from robosuite.controllers.parts.gripper.gripper_controller import GripperController
 from robosuite.utils.control_utils import *
@@ -80,6 +81,7 @@ class GeneralGripController(GripperController):
         kp=200,
         ki=0.1,
         kd=10,
+        integral_limit=1.0,
         **kwargs,  # does nothing; used so no error raised when dict is passed with extra terms used previously
     ):
         super().__init__(
@@ -127,10 +129,12 @@ class GeneralGripController(GripperController):
         self.integral_error = np.zeros(self.control_dim)
         self.dt = 1.0 / policy_freq
 
+        self.integral_limit = integral_limit
+
     @property
     def goal_qpos(self):
         return self._goal_qpos
-        
+
     @goal_qpos.setter
     def goal_qpos(self, value):
         # print("\n[DEBUG] Gripper goal_qpos being set to:", value)
@@ -157,7 +161,7 @@ class GeneralGripController(GripperController):
         Raises:
             AssertionError: [Invalid action dimension size]
         """
-        
+
         if action is None:  # no action, do nothing
             return
         # Update state
@@ -213,15 +217,17 @@ class GeneralGripController(GripperController):
         position_error = desired_qpos - self.joint_pos
         velocity_error = -self.joint_vel
 
-        # Update integral error
+        # Update integral error with limits
         self.integral_error += position_error * self.dt
+        # Clip integral error to prevent windup
+        self.integral_error = np.clip(self.integral_error, -self.integral_limit, self.integral_limit)
 
         if self.control_mode == "torque":
             # PID control
             p_term = np.multiply(position_error, self.kp)
             i_term = np.multiply(self.integral_error, self.ki)
             d_term = np.multiply(velocity_error, self.kd)
-            
+
             desired_torque = p_term + i_term + d_term
             self.torques = np.dot(self.mass_matrix, desired_torque) + self.torque_compensation
         elif self.control_mode == "velocity":

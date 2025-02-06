@@ -1071,6 +1071,8 @@ class MjSim:
 
     @classmethod
     def from_xml_string(cls, xml):
+        with open("temp.xml", "w") as f:
+            f.write(xml)
         model = mujoco.MjModel.from_xml_string(xml)
         return cls(model)
 
