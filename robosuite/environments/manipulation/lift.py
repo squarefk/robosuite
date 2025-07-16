@@ -1,6 +1,7 @@
 from collections import OrderedDict
 
 import numpy as np
+import random
 
 from robosuite.environments.manipulation.manipulation_env import ManipulationEnv
 from robosuite.models.arenas import TableArena
@@ -438,3 +439,24 @@ class Lift(ManipulationEnv):
 
         # cube is higher than the table top above a margin
         return cube_height > table_height + 0.04
+
+
+class LocoLift(Lift):
+
+    def _load_model(self):
+        """
+        Loads an xml model, puts it in self.model
+        """
+        self.table_full_size = random.choice([
+            (1.6, 0.8, 0.05),
+            (0.8, 1.6, 0.05)
+        ])
+        self.table_offset = np.array((
+            random.uniform(0, 1),
+            random.uniform(-0.5, 0.5),
+            0.8,
+        ))
+        if self.placement_initializer is not None:
+            self.placement_initializer.reference_pos = self.table_offset
+
+        super()._load_model()
