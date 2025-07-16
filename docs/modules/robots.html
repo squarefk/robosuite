@@ -1,0 +1,878 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Robots &#8212; robosuite 1.5 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=81f6180a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9f1c6d22"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/robots';</script>
+    <script src="../_static/js/custom.js?v=4441fbbd"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Objects" href="objects.html" />
+    <link rel="prev" title="Overview" href="overview.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/robosuite_color.png" class="logo__image only-light" alt="robosuite 1.5 documentation - Home"/>
+    <script>document.write(`<img src="../_static/robosuite_color.png" class="logo__image only-dark" alt="robosuite 1.5 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicusage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demos.html">Demo Showcases</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Robots</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devices.html">I/O Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers.html">Renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/add_controller.html">Adding Third Party Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/add_environment.html">Building Your Own Environments</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulation API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../simulation/robot.html">Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/device.html">Device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/controller.html">Controller</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modeling API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modeling/mujoco_model.html">Mujoco Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/robot_model.html">Robot Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/object_model.html">Object Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/arena.html">Arena</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/task.html">Task</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Source API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../source/robosuite.html">robosuite package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../source/robosuite.controllers.html">robosuite.controllers package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../source/robosuite.controllers.composite.html">robosuite.controllers.composite package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../source/robosuite.controllers.parts.html">robosuite.controllers.parts package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.controllers.parts.arm.html">robosuite.controllers.parts.arm package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.controllers.parts.generic.html">robosuite.controllers.parts.generic package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.controllers.parts.gripper.html">robosuite.controllers.parts.gripper package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.controllers.parts.mobile_base.html">robosuite.controllers.parts.mobile_base package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/robosuite.devices.html">robosuite.devices package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../source/robosuite.environments.html">robosuite.environments package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../source/robosuite.environments.manipulation.html">robosuite.environments.manipulation package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../source/robosuite.models.html">robosuite.models package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../source/robosuite.models.arenas.html">robosuite.models.arenas package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../source/robosuite.models.bases.html">robosuite.models.bases package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../source/robosuite.models.grippers.html">robosuite.models.grippers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../source/robosuite.models.objects.html">robosuite.models.objects package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.models.objects.composite.html">robosuite.models.objects.composite package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.models.objects.composite_body.html">robosuite.models.objects.composite_body package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.models.objects.group.html">robosuite.models.objects.group package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.models.objects.primitive.html">robosuite.models.objects.primitive package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../source/robosuite.models.robots.html">robosuite.models.robots package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../source/robosuite.models.robots.manipulators.html">robosuite.models.robots.manipulators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../source/robosuite.models.tasks.html">robosuite.models.tasks package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../source/robosuite.renderers.html">robosuite.renderers package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../source/robosuite.renderers.context.html">robosuite.renderers.context package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../source/robosuite.renderers.mjviewer.html">robosuite.renderers.mjviewer package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/robosuite.robots.html">robosuite.robots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/robosuite.utils.html">robosuite.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source/robosuite.wrappers.html">robosuite.wrappers package</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../algorithms/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithms/demonstrations.html">Human Demonstrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithms/sim2real.html">Sim-to-Real Transfer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references.html">Projects using robosuite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modules/robots.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Robots</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Robots</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime">Runtime</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#callables">Callables</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#models">Models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulators">Manipulators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grippers">Grippers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bases">Bases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-your-own-robot">Create Your Own Robot</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="robots">
+<h1>Robots<a class="headerlink" href="#robots" title="Link to this heading">#</a></h1>
+<figure class="align-default">
+<img alt="../_images/robots_module_v15.png" src="../_images/robots_module_v15.png" />
+</figure>
+<p><strong>Robots</strong> are a key component in <strong>robosuite</strong>, and serve as the embodiment of a given agent as well as the central interaction point within an environment and key interface to MuJoCo for the robot-related state and control. <strong>robosuite</strong> captures this level of abstraction with the <a class="reference external" href="../simulation/robot">Robot</a>-based classes, with support for both single-armed and bimanual variations, as well as robots with mobile manipulation capabilities, including both legged and wheeled variants. In turn, the Robot class is centrally defined by a <a class="reference external" href="../modeling/robot_model">RobotModel</a>, <a class="reference external" href="../modeling/robot_model.html#robot-base-model">RobotBaseModel</a>, <a class="reference external" href="../modeling/robot_model.html#gripper-model">GripperModel</a>, and <a class="reference external" href="../simulation/controller">Controller(s)</a>. Subclasses of the <code class="docutils literal notranslate"><span class="pre">RobotModel</span></code> class may also include additional models as well; for example, the <a class="reference external" href="../modeling/robot_model.html#manipulator-model">ManipulatorModel</a> class also includes <a class="reference external" href="../modeling/robot_model.html#gripper-model">GripperModel(s)</a> (with no gripper being represented by a dummy class).</p>
+<p>The high-level features of <strong>robosuite</strong>’s robots are described as follows:</p>
+<ul class="simple">
+<li><p><strong>Diverse and Realistic Models</strong>: <strong>robosuite</strong> provides models for 10 commercially-available robots (including the humanoid GR1 Robot), 9 grippers (including the inspire dexterous hand model), 4 bases (including the Omron wheeled mobile base), and 6 body-part controllers, with model properties either taken directly from official product documentation or raw spec sheets. An additional 8 robots, 8 grippers, and 3 bases can be installed separately from the <a class="reference external" href="https://github.com/ARISE-Initiative/robosuite_models">robosuite-models</a> repository.</p></li>
+<li><p><strong>Modularized Support</strong>: Robots are designed to be plug-n-play – any combinations of robots, models, and controllers can be used, assuming the given environment is intended for the desired robot configuration. Because each robot is assigned a unique ID number, multiple instances of identical robots can be instantiated within the simulation without error.</p></li>
+<li><p><strong>Self-Enclosed Abstraction</strong>: For a given task and environment, any information relevant to the specific robot instance can be found within the properties and methods within that instance. This means that each robot is responsible for directly setting its initial state within the simulation at the start of each episode, and also directly controls the robot in simulation via torques outputted by its controller’s transformed actions.</p></li>
+</ul>
+</section>
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h1>
+<p>Below, we discuss the usage and functionality of the robots over the course of its program lifetime.</p>
+<section id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading">#</a></h2>
+<p>During environment creation (<code class="docutils literal notranslate"><span class="pre">suite.make(...)</span></code>), individual robots are both instantiated and initialized. The desired RobotModel, RobotBaseModel, and Controller(s) (where multiple and/or additional models may be specified, e.g. for manipulator bimanual robots) are loaded into each robot, with the models being passed into the environment to compose the final MuJoCo simulation object. Each robot is then set to its initial state.</p>
+</section>
+<section id="runtime">
+<h2>Runtime<a class="headerlink" href="#runtime" title="Link to this heading">#</a></h2>
+<p>During a given simulation episode (each <code class="docutils literal notranslate"><span class="pre">env.step(...)</span></code> call), the environment will receive a set of actions and distribute them accordingly to each robot, according to their respective action spaces. Each robot then converts these actions into low-level torques via their respective controllers, and directly executes these torques in the simulation. At the conclusion of the environment step, each robot will pass its set of robot-specific observations to the environment, which will then concatenate and append additional task-level observations before passing them as output from the <code class="docutils literal notranslate"><span class="pre">env.step(...)</span></code> call.</p>
+</section>
+<section id="callables">
+<h2>Callables<a class="headerlink" href="#callables" title="Link to this heading">#</a></h2>
+<p>At any given time, each robot has a set of <code class="docutils literal notranslate"><span class="pre">properties</span></code> whose real-time values can be accessed at any time. These include specifications for a given robot, such as its DoF, action dimension, and torque limits, as well as proprioceptive values, such as its joint positions and velocities. Additionally, if the robot is enabled with any sensors, those readings can also be polled as well. A full list of robot properties can be found in the <a class="reference external" href="../simulation/robot.html">Robots API</a> section.</p>
+</section>
+</section>
+<section id="models">
+<h1>Models<a class="headerlink" href="#models" title="Link to this heading">#</a></h1>
+<p><strong>robosuite</strong> is designed to be generalizable to multiple robotic domains. The current release focuses on manipulator robots. For adding new robots, we provide a <a class="reference external" href="https://docs.google.com/document/d/1bSUKkpjmbKqWyV5Oc7_4VL4FGKAQZx8aWm_nvlmTVmE/edit?usp=sharing">rudimentary guide</a> on how to import raw Robot and Gripper models (based on a URDF source file) into robosuite.</p>
+<section id="manipulators">
+<h2>Manipulators<a class="headerlink" href="#manipulators" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Robot</p></th>
+<th class="head"><p>Image</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Panda</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_Panda_isaac.png"><img alt="../_images/robot_model_Panda_isaac.png" class="align-center" src="../_images/robot_model_Panda_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 7</p></li>
+<li><p><strong>Default Gripper:</strong> PandaGripper</p></li>
+<li><p><strong>Default Base:</strong> RethinkMount</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Sawyer</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_Sawyer_isaac.png"><img alt="../_images/robot_model_Sawyer_isaac.png" class="align-center" src="../_images/robot_model_Sawyer_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 7</p></li>
+<li><p><strong>Default Gripper:</strong> RethinkGripper</p></li>
+<li><p><strong>Default Base:</strong> RethinkMount</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>IIWA</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_IIWA_isaac.png"><img alt="../_images/robot_model_IIWA_isaac.png" class="align-center" src="../_images/robot_model_IIWA_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 7</p></li>
+<li><p><strong>Default Gripper:</strong> Robotiq140Gripper</p></li>
+<li><p><strong>Default Base:</strong> RethinkMount</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Jaco</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_Jaco_isaac.png"><img alt="../_images/robot_model_Jaco_isaac.png" class="align-center" src="../_images/robot_model_Jaco_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 7</p></li>
+<li><p><strong>Default Gripper:</strong> JacoThreeFingerGripper</p></li>
+<li><p><strong>Default Base:</strong> RethinkMount</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Kinova3</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_Kinova3_isaac.png"><img alt="../_images/robot_model_Kinova3_isaac.png" class="align-center" src="../_images/robot_model_Kinova3_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 7</p></li>
+<li><p><strong>Default Gripper:</strong> Robotiq85Gripper</p></li>
+<li><p><strong>Default Base:</strong> RethinkMount</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>UR5e</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_UR5e_isaac.png"><img alt="../_images/robot_model_UR5e_isaac.png" class="align-center" src="../_images/robot_model_UR5e_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 6</p></li>
+<li><p><strong>Default Gripper:</strong> Robotiq85Gripper</p></li>
+<li><p><strong>Default Base:</strong> RethinkMount</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Baxter</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_Baxter_isaac.png"><img alt="../_images/robot_model_Baxter_isaac.png" class="align-center" src="../_images/robot_model_Baxter_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 14</p></li>
+<li><p><strong>Default Gripper:</strong> RethinkGripper</p></li>
+<li><p><strong>Default Base:</strong> RethinkMount</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>GR1</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_GR1_isaac.png"><img alt="../_images/robot_model_GR1_isaac.png" class="align-center" src="../_images/robot_model_GR1_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 24</p></li>
+<li><p><strong>Default Gripper:</strong> InspireHands</p></li>
+<li><p><strong>Default Base:</strong> NoActuationBase</p></li>
+<li><p><strong>Variants</strong>: GR1FixedLowerBody, GR1FloatingBody, GR1ArmsOnly</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Spot</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_Spot_isaac.png"><img alt="../_images/robot_model_Spot_isaac.png" class="align-center" src="../_images/robot_model_Spot_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 19</p></li>
+<li><p><strong>Default Gripper:</strong> BDGripper</p></li>
+<li><p><strong>Default Base:</strong> Spot</p></li>
+<li><p><strong>Variants</strong>: SpotWithArmFloating</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tiago</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robot_model_Tiago_isaac.png"><img alt="../_images/robot_model_Tiago_isaac.png" class="align-center" src="../_images/robot_model_Tiago_isaac.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 20</p></li>
+<li><p><strong>Default Gripper:</strong> Robotiq85Gripper</p></li>
+<li><p><strong>Default Base:</strong> NullMobileBase</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="grippers">
+<h2>Grippers<a class="headerlink" href="#grippers" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 45.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Gripper</p></th>
+<th class="head"><p>Image</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>BD Gripper</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/bd_gripper.png"><img alt="../_images/bd_gripper.png" class="align-center" src="../_images/bd_gripper.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 1</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Inspire Hands</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/inspire_hands.png"><img alt="../_images/inspire_hands.png" class="align-center" src="../_images/inspire_hands.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 6</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Jaco Three Finger Gripper</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/jaco_gripper.png"><img alt="../_images/jaco_gripper.png" class="align-center" src="../_images/jaco_gripper.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 1 (3 for dexterous version)</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Panda Gripper</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/panda_gripper.png"><img alt="../_images/panda_gripper.png" class="align-center" src="../_images/panda_gripper.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 1</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Rethink Gripper</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/rethink_gripper.png"><img alt="../_images/rethink_gripper.png" class="align-center" src="../_images/rethink_gripper.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 1</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Robotiq 85 Gripper</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robotiq85_gripper.png"><img alt="../_images/robotiq85_gripper.png" class="align-center" src="../_images/robotiq85_gripper.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 1</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Robotiq 140 Gripper</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robotiq140_gripper.png"><img alt="../_images/robotiq140_gripper.png" class="align-center" src="../_images/robotiq140_gripper.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 1</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Robotiq Three Finger Gripper</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/robotiq_three_gripper.png"><img alt="../_images/robotiq_three_gripper.png" class="align-center" src="../_images/robotiq_three_gripper.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 1</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Wiping Gripper</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/wiping_gripper.png"><img alt="../_images/wiping_gripper.png" class="align-center" src="../_images/wiping_gripper.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>DoF:</strong> 0</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="bases">
+<h2>Bases<a class="headerlink" href="#bases" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 45.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Gripper</p></th>
+<th class="head"><p>Image</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Rethink Mount</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/rethink_base.png"><img alt="../_images/rethink_base.png" class="align-center" src="../_images/rethink_base.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>Type:</strong> Fixed</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Rethink Minimal Mount</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/rethink_minimal_base.png"><img alt="../_images/rethink_minimal_base.png" class="align-center" src="../_images/rethink_minimal_base.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>Type:</strong> Fixed</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Omron Mobile Base</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/omron_base.png"><img alt="../_images/omron_base.png" class="align-center" src="../_images/omron_base.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>Type:</strong> Mobile</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Spot Base</strong></p></td>
+<td><a class="reference internal image-reference" href="../_images/spot_base.png"><img alt="../_images/spot_base.png" class="align-center" src="../_images/spot_base.png" style="width: 90%;" />
+</a>
+</td>
+<td><ul class="simple">
+<li><p><strong>Type:</strong> Legged</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="create-your-own-robot">
+<h2>Create Your Own Robot<a class="headerlink" href="#create-your-own-robot" title="Link to this heading">#</a></h2>
+<p>As of v1.5, users can create composite robots to match their specification. Specificially, arms, grippers, and bases can be swapped to create new robots configurations. We also provide several other robot models in an external repo. For more information, please refer to <a class="reference external" href="https://github.com/ARISE-Initiative/robosuite_models">here</a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="overview.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Overview</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="objects.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Objects</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Robots</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime">Runtime</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#callables">Callables</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#models">Models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulators">Manipulators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grippers">Grippers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bases">Bases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-your-own-robot">Create Your Own Robot</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the robosuite core team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Stanford University and The University of Texas at Austin 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
