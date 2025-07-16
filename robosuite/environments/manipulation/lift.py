@@ -448,8 +448,8 @@ class LocoLift(Lift):
         Loads an xml model, puts it in self.model
         """
         self.table_full_size = random.choice([
-            (1.6, 0.8, 0.05),
-            (0.8, 1.6, 0.05)
+            (2.0, 0.8, 0.05),
+            (0.8, 2.0, 0.05)
         ])
         self.table_offset = np.array((
             random.uniform(0, 1),
